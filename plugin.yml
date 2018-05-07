@@ -1,0 +1,7 @@
+name: LootBox
+version: 1
+main: me.dennis.lootbox.core.LootBox
+author: DennisLysenko, ServersMC
+commands:
+    lootbox:
+        description: 'Main LootBox command.'

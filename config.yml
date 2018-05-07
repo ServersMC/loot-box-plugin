@@ -1,0 +1,11 @@
+## Lootbox Config
+
+## Common is 100% if no rare items were picked.
+loot_chance:
+    rare: 20
+    epic: 10
+    legendary: 5
+## Chest loot amount
+chest_amount:
+    voter: 1
+    donator: 5
