@@ -65,6 +65,9 @@ public class CrateBlock {
 	
 	public static boolean containsLocation(Location location) {
 		for (CrateBlock crate : crates) {
+			if (!location.getWorld().equals(crate.location.getWorld())) {
+				continue;
+			}
 			if ((int) crate.getLocation().distance(location) == 0) {
 				return true;
 			}
@@ -74,6 +77,9 @@ public class CrateBlock {
 	
 	public static CrateBlock getCrate(Location location) {
 		for (CrateBlock crate : crates) {
+			if (!location.getWorld().equals(crate.location.getWorld())) {
+				continue;
+			}
 			if ((int) crate.getLocation().distance(location) == 0) {
 				return crate;
 			}
