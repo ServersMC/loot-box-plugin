@@ -1,15 +1,22 @@
 package me.dennis.lootbox.enums;
 
+import org.bukkit.ChatColor;
+
 import me.dennis.lootbox.utils.Config;
 
 public enum LootType {
 
-	LEGENDARY,
-	EPIC,
-	RARE,
-	COMMON;
+	LEGENDARY(ChatColor.LIGHT_PURPLE),
+	EPIC(ChatColor.GOLD),
+	RARE(ChatColor.GREEN),
+	COMMON(ChatColor.DARK_GRAY);
 	
 	private Integer chance;
+	private ChatColor color;
+	
+	LootType(ChatColor color) {
+		this.color = color;
+	}
 	
 	public static void loadConfigValues() {
 		for (LootType type : values()) {
@@ -31,6 +38,10 @@ public enum LootType {
 	
 	public Integer getChance() {
 		return chance;
+	}
+	
+	public String getColor() {
+		return color.toString();
 	}
 	
 }

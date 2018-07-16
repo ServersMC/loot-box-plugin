@@ -27,6 +27,7 @@ import me.dennis.lootbox.enums.LootType;
 import me.dennis.lootbox.objects.CrateBlock;
 import me.dennis.lootbox.objects.CustomItems;
 import me.dennis.lootbox.objects.LootItem;
+import me.dennis.lootbox.utils.Console;
 
 public class CrateEvent implements Listener {
 
@@ -169,7 +170,11 @@ public class CrateEvent implements Listener {
 		for (int i = 0; i < crate.getType().getChestAmount(); i++) {
 			if (crate.getType().equals(CrateType.DONATOR)) {
 				if (i == 0) {
-					crateLoot.add(LootItem.random(LootType.RARE));
+					ItemStack item = LootItem.random(LootType.RARE);
+					if (item == null) {
+						Console.warn("You do not have any " + LootType.RARE.name() + " items for a crate!");
+					}
+					crateLoot.add(item);
 					continue;
 				}
 			}
@@ -177,7 +182,11 @@ public class CrateEvent implements Listener {
 			Integer chance = (int) (rand.nextDouble() * 100d) + 1;
 			for (LootType type : LootType.values()) {
 				if (chance <= type.getChance()) {
-					crateLoot.add(LootItem.random(type));
+					ItemStack item = LootItem.random(type);
+					if (item == null) {
+						Console.warn("You do not have any " + type.name() + " items for a crate!");
+					}
+					crateLoot.add(item);
 					break;
 				}
 			}
@@ -212,7 +221,15 @@ public class CrateEvent implements Listener {
 
 		// Check if player is in creative
 		if (player.getGameMode().equals(GameMode.CREATIVE)) {
+			
+			// Destroy Crate
+			crate.destroy();
 
+			// Check if looted
+			if (crate.isLooted()) {
+				return;
+			}
+			
 			// Drop Crate
 			if (displayName.equals(CustomItems.DONOR_CRATE_NAME)) {
 				block.getWorld().dropItemNaturally(block.getLocation(), CustomItems.getDonatorCrate());

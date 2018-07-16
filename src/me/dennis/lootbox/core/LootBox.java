@@ -7,6 +7,7 @@ import me.dennis.lootbox.commands.CmdLootbox;
 import me.dennis.lootbox.enums.CrateType;
 import me.dennis.lootbox.enums.LootType;
 import me.dennis.lootbox.events.CrateEvent;
+import me.dennis.lootbox.events.ListCmdEvent;
 import me.dennis.lootbox.objects.CrateBlock;
 import me.dennis.lootbox.objects.LootItem;
 import me.dennis.lootbox.utils.Config;
@@ -35,6 +36,7 @@ public class LootBox extends JavaPlugin {
 		
 		// Listeners
 		Bukkit.getPluginManager().registerEvents(new CrateEvent(), this);
+		Bukkit.getPluginManager().registerEvents(new ListCmdEvent(), this);
 		
 		// Done
 		Console.info("Done!");

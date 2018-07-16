@@ -58,6 +58,9 @@ public class LootItem {
 	public static ItemStack random(LootType type) {
 		Random rand = new SecureRandom();
 		Integer chance = (int) (rand.nextDouble() * LootItem.getItems(type).size());
+		if (LootItem.getItems(type).size() == 0) {
+			return null;
+		}
 		return new ItemStack(getItems(type).get(chance).item);
 	}
 	

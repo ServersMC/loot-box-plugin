@@ -1,5 +1,5 @@
 name: LootBox
-version: 2
+version: 3
 main: me.dennis.lootbox.core.LootBox
 author: DennisLysenko, ServersMC
 commands:
